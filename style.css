@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Patrick Hand', cursive;
+}
+/* nak color aesthetic */
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgb(231, 194, 224);
+}
+.container{
+    display: flex;
+    width: 100%;
+    max-width: 1050px;  
+    gap: 10px;
+    padding: 10px;  
+}
+section{
+    background: #fff;
+    border-radius: 10px;
+}
+.tools-board{
+    width: 210px;
+    padding: 15px 22px 0;
+}
+.tools-board .row{
+    margin-bottom: 20px;
+}
+.row .options{
+    list-style: none;
+    margin: 10px 0 0 5px;
+}
+/* nak bagi memanjang shape ke bawah untuk option shape */
+.row .options .option{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    margin-bottom: 10px;
+}
+/* Color icon dgn text hover  guna is sebb is specific dan nested , where tak. */
+.option:is(:hover, .active) img{
+    filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+
+}
+/* color untuk option je yang shape semua tu  */
+.option :where(span, label){
+    color: rgb(71, 70, 71);
+    cursor: pointer;
+    padding-left: 10px;
+}
+/* nak bagi fill option sama dengan yang option lain 
+hover active untuk span label*/
+.option:is(:hover, .active) :where(span, label){
+    color: rgb(246, 102, 181);
+}
+.option #fill-color{
+    cursor: pointer;
+    height: 14px;
+    width: 14px;
+}
+/* Bila checked je box dekat fill color tukar */
+#fill-color:checked ~label{
+    color: rgb(147, 7, 100);
+}
+/* size slider panjang sikit bagi nmpak kemas */
+.option #size-slider{
+    width: 100%;
+    margin-top: 10px;
+    height: 5px;
+}
+/* Kedudukan melintang */
+.colors .options{
+    display: flex;
+    justify-content: space-between;
+}
+/* Nak bagi color option berwarna dan bentuk bulat */
+.colors .option{
+    height: 20px;
+    width: 20px;
+    background: rgb(109, 10, 59);
+    border-radius:50%;
+    margin-top: 3px;
+    position: relative;
+}
+/* Tukar color untuk option color semua */
+.colors .option:nth-child(1){
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(20, 20, 20);
+}
+.colors .option:nth-child(2){
+    background-color: rgb(0, 0, 0);
+}
+.colors .option:nth-child(3){
+    background-color: rgb(255, 1, 1);
+}
+.colors .option:nth-child(4){
+    background-color: rgb(0, 255, 64);
+}
+.colors .option:nth-child(5){
+    background-color: rgb(48, 3, 247);
+}
+/* Bagi bentuk macam butang */
+/*::before = Insert something before the content of each <p> element */
+.colors .option.selected::before{
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    height: 12px;
+    width: 12px;
+    background: inherit;
+    border-radius: inherit;
+    border: 2px solid #fff;
+    transform: translate(-50%, -50%);
+}
+/* color picker style */
+.option #color-picker{
+    opacity: 0;
+    cursor: pointer;
+
+}
+/* Color putih hover color kelabu */
+.colors .option:first-child.selected::before{
+    border-color: rgb(88, 87, 87);
+}
+/* button style */
+.buttons button{
+    width: 100%;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 11px 0;
+    font-size: 0.9rem;
+    margin-bottom: 13px;
+    background: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.buttons .clear-canvas{
+    background: rgb(70, 68, 68);
+    border: 1px solid rgb(70, 68, 68);
+    transition: all 0.3s ease;
+}
+/* Bila hover dia tukar warna */
+.clear-canvas:hover{
+    background: rgb(255, 255, 255);
+    color: rgb(70, 68, 68);
+}
+.buttons .save-image{
+    background: rgb(13, 13, 13);
+    border: 1px solid rgb(13, 13, 13);
+}
+.drawing-board{
+    /* Tambah satu board ke sebelah tapi kene edit gap dengan padding dalam container
+    baru dia pecah */
+    flex: 1;
+   
+}
+.drawing-board canvas{
+    width: 100%;
+    height: 100%;
+}
